@@ -28,3 +28,19 @@ Themes are installed with pip ex. `pip install furo`, then you set the theme in 
 ```python
 html_theme = "furo"
 ```
+
+## Adding multiple pages
+
+To add another page to your project, you need to add it to the `toctree` directive in index.rst.
+
+This allows the page to show up as a link on the root page.
+
+If there is a doc file in docs/source that's not listed in the `toctree`,  users wont be able to access the doc and you'll get the following error message in the build phase:
+
+> WARNING: document isn't included in any toctree
+
+Pages can be cross referenced within the project as well with the `:doc:` role
+
+Also, you can reference arbitrary locations by inserting a label a document ex: `.. _installation` then referencing the label with a `:ref:` role
+
+See [index.rst](docs/source/index.rst) for examples.
