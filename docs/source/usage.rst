@@ -23,9 +23,7 @@ you can use the ``lumache.get_random_ingredients()`` function:
 
 The ``kind`` parameter should be either ``"meat"``, ``"fish"``, or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients` will raise an exception.
 
-.. py:exception:: lumache.InvalidKindError
-
-   Raised if the kind is invalid.
+.. autoexception:: lumache.InvalidKindError
 
 >>> import lumache
 >>> lumache.get_random_ingredients()
