@@ -71,6 +71,30 @@ In order to reference the code directly, sphinx needs to be able to import the c
 
 Once the code is imported you can use extensions like doctest to import and test code snippets in the docs.
 
+## Automatically generating docs from code
+
+In addition to doctest, you can use autodoc to automatically update the documented python objects and reuse your docstrings.
+
+This is done by applying the [sphinx formatting](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html) your docstrings then replacing the `py:___` domain directives with their corresponding `auto____` directives to import directly from python modules. 
+
+Example: 
+
+From this...
+```
+.. py:function:: lumache.get_random_ingredients(kind=None)
+
+   Return a list of random ingredients as strings.
+
+   :param kind: Optional "kind" of ingredients.
+   :type kind: list[str] or None
+   :raise lumache.InvalidKindError: If the kind is invalid.
+   :return: The ingredients list.
+   :rtype: list[str]
+```
+... to this:
+```
+.. autofunction:: lumache.get_random_ingredients    # where this function has the preformatted docstring reused by autodoc
+```
 
 ## Extensions
 
@@ -92,3 +116,63 @@ To actually run the tests, execute
 ```
 make doctest
 ```
+
+Errors look like:
+```
+Document: usage
+---------------
+**********************************************************************
+File "usage.rst", line 41, in default
+Failed example:
+    lumache.get_random_ingredients()
+Expected:
+    ['shells', 'gorgonzola', 'parsley']
+Got:
+    ['eggs', 'bacon', 'spam']
+**********************************************************************
+1 items had failures:
+   1 of   2 in default
+2 tests in 1 items.
+1 passed and 1 failed.
+***Test Failed*** 1 failures.
+
+Doctest summary
+===============
+    2 tests
+    1 failure in tests
+    0 failures in setup code
+    0 failures in cleanup code
+build finished with problems.
+make: *** [doctest] Error 1
+```
+
+Success looks like:
+
+```
+Document: usage
+---------------
+1 items passed all tests:
+   2 tests in default
+2 tests in 1 items.
+2 passed and 0 failed.
+Test passed.
+
+Doctest summary
+===============
+    2 tests
+    0 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code
+build succeeded.
+
+Testing of doctests in the sources finished, look at the results in build/doctest/output.txt.
+```
+
+### autodoc
+Replace manual references to your code in the docs with auto imports *directly* from your code.
+
+Syntax:
+- format your py docstrings in the [sphinx style](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html)
+    - see [lumache.py](lumache.py)
+- replace the `py:___` directive references to your python object in the docs with `auto____` directives 
+    - ex `.. autofunction:: lumache.get_random_ingredients`
