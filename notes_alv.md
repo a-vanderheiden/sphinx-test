@@ -21,3 +21,10 @@ docs
 ## How to build docs
 
 run `sphinx-build -M html <source_dir> <output_dir>` or `make html` depending on if you have the convenience scripts 
+
+## Themes
+
+Themes are installed with pip ex. `pip install furo`, then you set the theme in conf.py
+```python
+html_theme = "furo"
+```
