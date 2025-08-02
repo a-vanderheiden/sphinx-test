@@ -176,3 +176,37 @@ Syntax:
     - see [lumache.py](lumache.py)
 - replace the `py:___` directive references to your python object in the docs with `auto____` directives 
     - ex `.. autofunction:: lumache.get_random_ingredients`
+
+### autosummary
+
+Automatically builds an api reference for all of your code. It does this by automatically generating an autodoc directive for each of your python objects.
+
+This is done by creating a new page in source, `api.rst`, then creating a toctree in this file. 
+```
+API
+===
+
+.. autosummary::
+   :toctree: generated
+
+   lumache
+```
+I believe that this will 
+1. search for a py module named `lumache` (already imported in conf.py)
+2. create an autodoc directive for each python object in the `lumache` module
+3. create the folder `docs/source/generated`
+4. create a .rst in `generated` for each module specified and dump the corresponding autodoc directives
+
+```
+docs/source
+├── _static
+├── _templates
+├── api.rst           # contains the API toctree
+├── conf.py           # imports `lumache`; add `autosummary_generate = True`
+├── generated  
+│   └── lumache.rst   # stores the autodoc directives
+├── index.rst         # "api" is added to this toctree
+└── usage.rst
+```
+
+> WARNING: the sphinx walkthrough does not tell you to add the `autosummary_generate = True` to conf.py. This is necesarry to automatically generate lumache.rst for the api reference.
