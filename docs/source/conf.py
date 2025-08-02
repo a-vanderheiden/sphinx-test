@@ -24,6 +24,7 @@ extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
 ]
 
 templates_path = ['_templates']
@@ -42,3 +43,6 @@ epub_show_urls = 'footnote'
 
 # Installed themes TODO: should be in pyproject.toml
 # `pip install furo`
+
+# Autosummary settings
+autosummary_generate = True  # not specified in the walkthrough
