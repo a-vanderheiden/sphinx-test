@@ -44,3 +44,12 @@ Pages can be cross referenced within the project as well with the `:doc:` role
 Also, you can reference arbitrary locations by inserting a label a document ex: `.. _installation` then referencing the label with a `:ref:` role
 
 See [index.rst](docs/source/index.rst) for examples.
+
+## Referencing python objects
+
+Sphinx can render docs for many languages with directives and roles organized in **domains** for each language.
+
+For example `.. py:function` references the function directive in the python domain.
+
+All such directives can be cross-referenced in the project with **:py:func:`function_name`**
+
