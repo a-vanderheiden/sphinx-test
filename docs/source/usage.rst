@@ -27,3 +27,5 @@ you can use the ``lumache.get_random_ingredients()`` function:
    :type kind: list[str] or None
    :return: The ingredients list.
    :rtype: list[str]
+
+The ``kind`` parameter should be either ``"meat"``, ``"fish"``, or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients` will raise an exception.
