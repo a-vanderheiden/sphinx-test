@@ -35,3 +35,6 @@ The ``kind`` parameter should be either ``"meat"``, ``"fish"``, or ``"veggies"``
 
    Raised if the kind is invalid.
 
+>>> import lumache
+>>> lumache.get_random_ingredients()
+['shells', 'gorgonzola', 'parsley']

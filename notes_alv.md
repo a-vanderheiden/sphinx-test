@@ -45,7 +45,7 @@ Also, you can reference arbitrary locations by inserting a label a document ex: 
 
 See [index.rst](docs/source/index.rst) for examples.
 
-## Referencing python objects
+## Python directives in Sphinx
 
 Sphinx can render docs for many languages with directives and roles organized in **domains** for each language.
 
@@ -53,3 +53,42 @@ For example `.. py:function` references the function directive in the python dom
 
 All such directives can be cross-referenced in the project with **:py:func:`function_name`**
 
+## Referencing python code directly
+
+In order to reference the code directly, sphinx needs to be able to import the code in [conf.py](docs/source/conf.py). This can be done one of two ways:
+1. ammend `sys.path` in the  with the following
+    ```python
+    # If extensions (or modules to document with autodoc) are in another directory,
+    # add these directories to sys.path here.
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    ``` 
+2. create a `pyproject.toml` file to make the code installable
+    ```python
+    import lumache
+    ```
+
+Once the code is imported you can use extensions like doctest to import and test code snippets in the docs.
+
+
+## Extensions
+
+### doctest
+Import and test snippets of your code in the docs.
+
+Syntax: 
+- precede the lines of python you want doctest to run with `>>>`
+- provide the expected output on the following line
+
+Example (from [usage.rst](docs/source/usage.rst)):
+```python
+>>> import lumache
+>>> lumache.get_random_ingredients()
+['shells', 'gorgonzola', 'parsley']
+```
+
+To actually run the tests, execute
+```
+make doctest
+```
