@@ -210,3 +210,6 @@ docs/source
 ```
 
 > WARNING: the sphinx walkthrough does not tell you to add the `autosummary_generate = True` to conf.py. This is necesarry to automatically generate lumache.rst for the api reference.
+
+API links generated from autosummary will link to where they were originally used in autodoc, so you need to reference the functions elsewhere in the docs.
+- ex. the link for `lumache.get_random_ingredients` in the API toctree points to its mention in `docs/source/usage.rst`, not directly to `lumache.py`
