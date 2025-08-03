@@ -7,7 +7,8 @@
 # add these directories to sys.path here.
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[2])) # TODO:import the code as a package using pyproject.toml
+sys.path.insert(0, str(Path(__file__).resolve().parents[2])) # resolves to /Users/avan/Projects/sphinx-test
+# TODO:import the code as a package using pyproject.toml
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
